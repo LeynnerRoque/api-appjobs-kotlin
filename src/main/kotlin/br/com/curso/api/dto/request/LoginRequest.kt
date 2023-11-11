@@ -1,4 +1,4 @@
-package br.com.curso.api.request
+package br.com.curso.api.dto.request
 
 data class LoginRequest(
         val login: String,

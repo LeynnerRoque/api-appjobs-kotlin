@@ -1,4 +1,4 @@
-package br.com.curso.api.response
+package br.com.curso.api.dto.response
 
 data class ConsultaResponse(
         val medicoNome: String? = null,

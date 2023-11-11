@@ -1,9 +1,9 @@
 package br.com.curso.api.service
 
-import br.com.curso.api.request.ConsultaEnvio
-import br.com.curso.api.request.LoginRequest
-import br.com.curso.api.response.ConsultaResponse
-import br.com.curso.api.response.LoginResponse
+import br.com.curso.api.dto.request.ConsultaEnvio
+import br.com.curso.api.dto.request.LoginRequest
+import br.com.curso.api.dto.response.ConsultaResponse
+import br.com.curso.api.dto.response.LoginResponse
 import org.aopalliance.intercept.Interceptor
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -20,7 +20,7 @@ class Service {
         val tokenRetorno = authLogin(login)
 
 
-        val envio = template.postForEntity(url, request,ConsultaResponse::class.java)!!
+        val envio = template.postForEntity(url, request, ConsultaResponse::class.java)!!
         val response : ConsultaResponse? = envio.body
 
          return  response
@@ -29,7 +29,7 @@ class Service {
     fun authLogin(request: LoginRequest) : String?{
         var url = "http://localhost:8080/login"
         val template = RestTemplate()
-        val envio = template.postForEntity(url,request,LoginResponse::class.java)
+        val envio = template.postForEntity(url,request, LoginResponse::class.java)
         return envio.body!!.token
     }
 

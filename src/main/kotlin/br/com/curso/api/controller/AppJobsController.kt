@@ -1,9 +1,9 @@
 package br.com.curso.api.controller
 
-import br.com.curso.api.request.ConsultaEnvio
-import br.com.curso.api.request.LoginRequest
-import br.com.curso.api.response.ConsultaResponse
-import br.com.curso.api.response.LoginResponse
+import br.com.curso.api.dto.request.ConsultaEnvio
+import br.com.curso.api.dto.request.LoginRequest
+import br.com.curso.api.dto.response.ConsultaResponse
+import br.com.curso.api.dto.response.LoginResponse
 import br.com.curso.api.service.Service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
