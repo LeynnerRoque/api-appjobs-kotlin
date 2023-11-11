@@ -17,7 +17,7 @@ class EnterpriseController (
         private val mapper: EnterpriseViewMapper
 ){
 
-    @PostMapping("/")
+    @PostMapping("")
     fun create(@RequestBody dto: EnterpriseDTO): ResponseEntity<EnterpriseDTO>{
       val response = service.create(dto)
         return ResponseEntity.ok(mapper.mapTo(response))
