@@ -4,6 +4,8 @@ import br.com.curso.api.dto.EnterpriseDTO
 import br.com.curso.api.dto.request.EnterpriseMapper
 import br.com.curso.api.model.Enterprise
 import br.com.curso.api.repository.EnterpriseRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -36,5 +38,9 @@ class EnterpriseService (private val repository: EnterpriseRepository,
     @Transactional
     fun delete(id: Long){
         repository.deleteById(id)
+    }
+
+    fun pagination(page: Pageable): Page<EnterpriseDTO>{
+        return mapper.toPage(repository.findAll(page))
     }
 }

@@ -3,6 +3,8 @@ package br.com.curso.api.dto.request
 import br.com.curso.api.dto.EnterpriseDTO
 import br.com.curso.api.dto.mapper.IMapper
 import br.com.curso.api.model.Enterprise
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.stereotype.Component
 
 @Component
@@ -30,6 +32,11 @@ class EnterpriseMapper: IMapper<EnterpriseDTO, Enterprise> {
 
     fun toList(list: List<Enterprise>) : List<EnterpriseDTO>{
         return list.map {a -> toDTO(a) }.toList()
+    }
+
+    fun toPage(page: Page<Enterprise>): Page<EnterpriseDTO>{
+        val pages = page.map { a -> toDTO(a) }.toList()
+        return PageImpl<EnterpriseDTO>(pages)
     }
 
 
