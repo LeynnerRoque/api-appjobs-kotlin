@@ -18,5 +18,19 @@ class EnterpriseMapper: IMapper<EnterpriseDTO, Enterprise> {
         return entity
     }
 
+    fun toDTO(t: Enterprise): EnterpriseDTO{
+        val dto : EnterpriseDTO = EnterpriseDTO(
+                t.id!!,
+                t.foundationName!!,
+                t.email!!,
+                t.phoneNumber!!,
+        )
+        return dto
+    }
+
+    fun toList(list: List<Enterprise>) : List<EnterpriseDTO>{
+        return list.map {a -> toDTO(a) }.toList()
+    }
+
 
 }

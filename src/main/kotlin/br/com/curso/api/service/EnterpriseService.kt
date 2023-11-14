@@ -13,8 +13,28 @@ class EnterpriseService (private val repository: EnterpriseRepository,
 ){
 
     @Transactional
-    fun create(request: EnterpriseDTO): Enterprise{
+    fun create(request: EnterpriseDTO): EnterpriseDTO{
         val enterprise = mapper.mapTo(request)
-        return repository.save(enterprise)
+        val response = repository.save(enterprise)
+        return mapper.toDTO(response)
+    }
+
+    fun listAll(): List<EnterpriseDTO>{
+        return mapper.toList(repository.findAll())
+    }
+
+    @Transactional
+    fun update(request: EnterpriseDTO): EnterpriseDTO{
+        if(repository.findById(request.id) == null){
+            return throw Exception()
+        }
+        val enterprise = mapper.mapTo(request)
+        val updateResponse = repository.save(enterprise)
+        return mapper.toDTO(updateResponse)
+    }
+
+    @Transactional
+    fun delete(id: Long){
+        repository.deleteById(id)
     }
 }
