@@ -1,8 +1,7 @@
 package br.com.curso.api.service
 
 import br.com.curso.api.dto.EnterpriseDTO
-import br.com.curso.api.dto.request.EnterpriseMapper
-import br.com.curso.api.model.Enterprise
+import br.com.curso.api.dto.mapper.EnterpriseMapper
 import br.com.curso.api.repository.EnterpriseRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

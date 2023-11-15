@@ -1,7 +1,6 @@
-package br.com.curso.api.dto.request
+package br.com.curso.api.dto.mapper
 
 import br.com.curso.api.dto.EnterpriseDTO
-import br.com.curso.api.dto.mapper.IMapper
 import br.com.curso.api.model.Enterprise
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl

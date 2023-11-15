@@ -1,7 +1,7 @@
 package br.com.curso.api.service
 
 import br.com.curso.api.dto.LocationDTO
-import br.com.curso.api.dto.request.LocationMapper
+import br.com.curso.api.dto.mapper.LocationMapper
 import br.com.curso.api.repository.LocationRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
