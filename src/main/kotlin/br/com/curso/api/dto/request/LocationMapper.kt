@@ -3,6 +3,8 @@ package br.com.curso.api.dto.request
 import br.com.curso.api.dto.LocationDTO
 import br.com.curso.api.dto.mapper.IMapper
 import br.com.curso.api.model.Location
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.stereotype.Component
 
 @Component
@@ -28,5 +30,14 @@ class LocationMapper: IMapper<LocationDTO, Location> {
                 t.stateProvince!!
         )
         return dto
+    }
+
+    fun listDTO(list: List<Location>): List<LocationDTO>{
+        return list.map { a -> toDTO(a) }.toList()
+    }
+
+    fun toPageDTO(listPage: Page<Location>): Page<LocationDTO>{
+        val pageDTO = listPage.map { a->toDTO(a) }.toList()
+        return PageImpl<LocationDTO>(pageDTO)
     }
 }
