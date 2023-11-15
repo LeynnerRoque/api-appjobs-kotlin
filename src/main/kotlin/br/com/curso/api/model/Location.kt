@@ -11,7 +11,7 @@ data class Location (
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long? = null,
         val streetAddress: String? = null,
-        val postlCode: String? = null,
+        val postalCode: String? = null,
         val city: String? = null,
         val stateProvince: String? = null
 
