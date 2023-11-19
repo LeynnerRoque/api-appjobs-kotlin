@@ -20,6 +20,7 @@ data class Peoples (
         val phone: String? = null,
         @ManyToOne
         val job: Job,
-        val location: Long? =null
+        @ManyToOne
+        val location: Location
 
 )
