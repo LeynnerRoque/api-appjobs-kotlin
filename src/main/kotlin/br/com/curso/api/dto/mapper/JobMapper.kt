@@ -1,6 +1,7 @@
 package br.com.curso.api.dto.mapper
 
 import br.com.curso.api.dto.JobDTO
+import br.com.curso.api.dto.response.JobResponseDTO
 import br.com.curso.api.model.Enterprise
 import br.com.curso.api.model.Job
 import br.com.curso.api.repository.EnterpriseRepository
@@ -26,23 +27,23 @@ class JobMapper (private val enterpriseRepository: EnterpriseRepository): IMappe
        return enterpriseRepository.findById(id).get()
    }
 
-    fun toDTO(t: Job): JobDTO{
-        val dto : JobDTO = JobDTO(
+    fun toDTO(t: Job): JobResponseDTO{
+        val dto  = JobResponseDTO(
                 t.id,
                 t.title,
                 t.description,
                 t.salary,
-                t.enterprise.id
+                t.enterprise.foundationName
         )
         return dto
     }
 
-    fun listDTO(list: List<Job>): List<JobDTO>{
+    fun listDTO(list: List<Job>): List<JobResponseDTO>{
         return list.map { a -> toDTO(a) }
     }
 
-    fun toPageDTO(page: Page<Job>): Page<JobDTO>{
+    fun toPageDTO(page: Page<Job>): Page<JobResponseDTO>{
         val pagDto = page.map { a -> toDTO(a) }.toList()
-        return PageImpl<JobDTO>(pagDto)
+        return PageImpl<JobResponseDTO>(pagDto)
     }
 }

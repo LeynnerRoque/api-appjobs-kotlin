@@ -43,4 +43,8 @@ class PeoplesService (private val repository: PeoplesRepository,
     fun pagination(pageable: Pageable): Page<PeoplesResponseDTO>{
         return mapper.pageTo(repository.findAll(pageable))
     }
+
+    fun listByJobTitle(title: String): List<PeoplesResponseDTO>{
+        return mapper.listDTO(repository.findPeoplesByJob_Title(title))
+    }
 }

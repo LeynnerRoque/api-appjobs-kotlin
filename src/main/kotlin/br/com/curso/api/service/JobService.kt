@@ -2,6 +2,7 @@ package br.com.curso.api.service
 
 import br.com.curso.api.dto.JobDTO
 import br.com.curso.api.dto.mapper.JobMapper
+import br.com.curso.api.dto.response.JobResponseDTO
 import br.com.curso.api.repository.JobRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -14,13 +15,13 @@ class JobService (
         private val repository: JobRepository){
 
     @Transactional
-    fun create(request: JobDTO): JobDTO{
+    fun create(request: JobDTO): JobResponseDTO{
         val response = repository.save(mapper.mapTo(request))
         return mapper.toDTO(response)
     }
 
     @Transactional
-    fun update(request: JobDTO): JobDTO{
+    fun update(request: JobDTO): JobResponseDTO{
         if(request.id == null){
             return throw Exception()
         }
@@ -33,11 +34,15 @@ class JobService (
         repository.deleteById(id)
     }
 
-    fun listAll(): List<JobDTO>{
+    fun listAll(): List<JobResponseDTO>{
         return mapper.listDTO(repository.findAll())
     }
 
-    fun pageAll(pageable: Pageable): Page<JobDTO>{
+    fun pageAll(pageable: Pageable): Page<JobResponseDTO>{
         return mapper.toPageDTO(repository.findAll(pageable))
+    }
+
+    fun filterByTitle(title: String): JobResponseDTO{
+        return mapper.toDTO(repository.findJobByTitle(title))
     }
 }

@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface EnterpriseRepository : JpaRepository<Enterprise, Long>{
+
+    fun findEnterpriseByFoundationName(name: String): Enterprise
 }

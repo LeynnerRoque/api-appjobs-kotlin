@@ -45,8 +45,13 @@ class EnterpriseController (
         service.delete(id)
     }
 
-    @GetMapping("")
+    @GetMapping("/pages")
     fun pages(@PageableDefault(size = 2) page: Pageable): ResponseEntity<Page<EnterpriseDTO>>{
         return ResponseEntity.ok(service.pagination(page))
+    }
+
+    @GetMapping("/filterByName/{name}")
+    fun filterByName(@PathVariable("name") name: String): ResponseEntity<EnterpriseDTO>{
+        return ResponseEntity.ok(service.filterByName(name))
     }
 }

@@ -1,6 +1,7 @@
 package br.com.curso.api.controller
 
 import br.com.curso.api.dto.JobDTO
+import br.com.curso.api.dto.response.JobResponseDTO
 import br.com.curso.api.service.JobService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -20,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController
 class JobController (private val service: JobService){
 
     @PostMapping("")
-    fun create(@RequestBody request: JobDTO): ResponseEntity<JobDTO>{
+    fun create(@RequestBody request: JobDTO): ResponseEntity<JobResponseDTO>{
         val response = service.create(request)
         return ResponseEntity.ok(response)
     }
 
     @PutMapping("")
-    fun update(@RequestBody request: JobDTO): ResponseEntity<JobDTO>{
+    fun update(@RequestBody request: JobDTO): ResponseEntity<JobResponseDTO>{
         val response = service.update(request)
         return ResponseEntity.ok(response)
     }
@@ -37,12 +38,17 @@ class JobController (private val service: JobService){
     }
 
     @GetMapping("all")
-    fun listAll(): ResponseEntity<List<JobDTO>>{
+    fun listAll(): ResponseEntity<List<JobResponseDTO>>{
         return ResponseEntity.ok(service.listAll())
     }
 
     @GetMapping("pages")
-    fun pagination(@PageableDefault(size = 3)pageable: Pageable) : ResponseEntity<Page<JobDTO>>{
+    fun pagination(@PageableDefault(size = 3)pageable: Pageable) : ResponseEntity<Page<JobResponseDTO>>{
         return ResponseEntity.ok(service.pageAll(pageable))
+    }
+
+    @GetMapping("/filterBy/{title}")
+    fun filterByTitle(@PathVariable("title") title: String): ResponseEntity<JobResponseDTO>{
+        return ResponseEntity.ok(service.filterByTitle(title))
     }
 }

@@ -42,4 +42,8 @@ class EnterpriseService (private val repository: EnterpriseRepository,
     fun pagination(page: Pageable): Page<EnterpriseDTO>{
         return mapper.toPage(repository.findAll(page))
     }
+
+    fun filterByName(name: String): EnterpriseDTO{
+        return mapper.toDTO(repository.findEnterpriseByFoundationName(name))
+    }
 }

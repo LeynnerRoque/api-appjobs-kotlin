@@ -44,4 +44,8 @@ class PeoplesController (private val service: PeoplesService){
     fun pagination(@PageableDefault(size = 3) pageable: Pageable): Page<PeoplesResponseDTO>{
         return service.pagination(pageable)
     }
+    @GetMapping("/filterByTitle/{title}")
+    fun filterByTitle(@PathVariable("title") title: String): ResponseEntity<List<PeoplesResponseDTO>>{
+        return ResponseEntity.ok(service.listByJobTitle(title))
+    }
 }
